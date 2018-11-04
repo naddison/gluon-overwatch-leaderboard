@@ -1,11 +1,13 @@
 import React from 'react';
 import dataService from './DataService';
-import Roster from './RosterTable'
+import Roster from 'app/roster/RosterTable'
 import './main.css';
 
 var columns = [
-    'battleTag',
+    'name',
+    'avatar',
     'rank',
+    "tier",
     'top3Heros',
     'timePlayed'
 ]
@@ -54,7 +56,7 @@ class Header extends React.Component {
     render() {
         return (
             <div id="header">
-                <h1>Overwatch Friend List</h1>
+                <h1>Gluon Overwatch Leaderboard</h1>
             </div>
         );
     }

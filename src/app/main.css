@@ -1,95 +1,105 @@
 /**
 Entire page Styles
 **/
+@font-face { font-family: "BigNoodle"; src: url("http://us.battle.net/forums/static/fonts/bignoodletoo/bignoodletoo.woff") format('woff'); }	
+@font-face { font-family: "BlizzardBold"; src: url("https://us.battle.net/forums/static/fonts/blizzard/blizzard-bold.woff") format('woff'); }
+@font-face { font-family: "BlizzardItalic"; src: url("https://us.battle.net/forums/static/fonts/blizzard/blizzard-italic.woff") format('woff'); }
+@font-face { font-family: "Blizzard"; src: url("https://us.battle.net/forums/static/fonts/blizzard/blizzard.woff") format('woff'); }
+
+body {
+    background-image: url(/static/128-168.jpg);
+}
+
 th {
-    font-size: 2.0em;
-    font-family: "Overwatch";
+    font-size: 1.5em;
+    font-family: "BigNoodle";
+    background-color: #14213D;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+    text-shadow: 4px 4px 0px #000000;
 }
 
-@font-face { font-family: "Overwatch"; src: url("http://us.battle.net/forums/static/fonts/bignoodletoo/bignoodletoo.woff") format('woff'); }	
-.player {
+td p {
+    font-family: 'Blizzard';
+    font-size: 1em;
+    text-align: center;
+}
+
+.notes h1 {
+    font-family: 'Blizzard';
+    font-size: 1em;
+}
+
+#header {
     width: 100%;
-    margin: 5px auto;
-    background: rgba(255,175,75,1);
-    background: -moz-linear-gradient(left, rgba(255,175,75,1) 0%, rgba(255,146,10,1) 100%);
-    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,175,75,1)), color-stop(100%, rgba(255,146,10,1)));
-    background: -webkit-linear-gradient(left, rgba(255,175,75,1) 0%, rgba(255,146,10,1) 100%);
-    background: -o-linear-gradient(left, rgba(255,175,75,1) 0%, rgba(255,146,10,1) 100%);
-    background: -ms-linear-gradient(left, rgba(255,175,75,1) 0%, rgba(255,146,10,1) 100%);
-    background: linear-gradient(to right, rgba(255,175,75,1) 0%, rgba(255,146,10,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaf4b', endColorstr='#ff920a', GradientType=1 );
-    border-radius: 120px 12px 120px 12px;
-    -moz-border-radius: 120px 12px 120px 12px;
-    -webkit-border-radius: 120px 12px 120px 12px;
-    border: 0px solid #000000;
-    -webkit-box-shadow: 6px 9px 7px 1px rgba(0,0,0,0.48);
-    -moz-box-shadow: 6px 9px 7px 1px rgba(0,0,0,0.48);
-    box-shadow: 6px 9px 7px 1px rgba(0,0,0,0.48);
-}
-
-p {
-    font-size: 1.7em;
-    font-family: "Overwatch";
-}
-
-h2, h1 {
-    color: grey;
-    font-family: "Overwatch";
+    background-color: #14213D;
+    outline: 6px double #14213D;
 }
 
 #header > h1 {
     font-size: 3.0em;
-    color: orange;
-}
-   
-html {
-    background: -moz-linear-gradient(top,  rgba(0,0,0,0) 56%, rgba(0,0,0,0.04) 59%, rgba(0,0,0,0.65) 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 56%,rgba(0,0,0,0.04) 59%,rgba(0,0,0,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom,  rgba(0,0,0,0) 56%,rgba(0,0,0,0.04) 59%,rgba(0,0,0,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
-    min-height: 100%;				
+    color: #FCA311;
+    font-family: "BigNoodle";
+    text-shadow: 2px 3px 4px #000000;
 }
     
 /**
 Component Specfic Styles
 **/
+.rankImg {
+    display: block;
+    margin: 0 auto;
+    height: auto;
+    width: 50px;
+} 
+
 table {
     margin: auto;
-    width:90%;
-}
-
-td p {
-    font-size: 1.3em;
-    margin: 0 auto;
-    text-align: center;
+    width:80%;
 }
 
 #header, .notes {
     text-align: center;
     margin: auto;
-    width: 50%;
+    width: 70%;
 }
 
-#top3HeroContainer {
+.avatar{
+    display: block;
     margin: 0 auto;
-    text-align: center;
-    width: 80%;
-    height: 100%;
-}
-
-#top3HeroContainer div {
-    display: inline-block;
-    height: 20%;
-    width: 20%;
+    height: auto;
+    width: 50px;
 }
 
 .heroImg {
-    transform: scale(0.75);
+    height: auto;
+    width: 50px;
+    float: left;
+}
+
+.top3HeroCell table p {
+    font-size: 0.7em;
+}
+
+td {
+    background-color: #E5E5E5;
 }
 
 .top3HeroCell {
-    margin: 0 auto;
-    width: 40%;
+    display: flex;                  /* establish flex container */
+    flex-direction: row;            /* default value; can be omitted */
+    flex-wrap: nowrap;              /* default value; can be omitted */
+    justify-content: space-between; /* switched from default (flex-start, see below) */
+}
+
+.top3HeroCell table {
+    width: 50px;
+    margin: 0;
+}
+
+.top3HeroCell table p {
+    padding: 0;
+    margin: 0;
 }
 
 /** 

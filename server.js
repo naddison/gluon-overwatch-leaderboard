@@ -44,6 +44,9 @@ if (process.env.NODE_ENV !== 'production') {
     // process.env.API_URL is an environment variable set on the server environment
     server.use('/api', proxy(url.parse(API_URL)));
 
+    //serve static stuff
+    server.use('/static', express.static('static'))
+
     // serve the app's index.html file when accessing any path
     server.get('*', function(req, res) {
         res.sendFile(path.resolve(__dirname, 'src/index.html'));
@@ -53,7 +56,9 @@ if (process.env.NODE_ENV !== 'production') {
 
     var logger = morgan('short');
 
-    server.use(express.static(path.resolve(__dirname, 'dist')));
+    //serve static stuff
+    server.use('/static', express.static('static'));
+    server.use('/dist', express.static('dist'));
     server.use(logger);
 
     server.listen(CLIENT_PORT, function() {

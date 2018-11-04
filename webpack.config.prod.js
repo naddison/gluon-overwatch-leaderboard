@@ -9,7 +9,7 @@ module.exports = {
         './src/index.js',
     ],
     output: {
-        path: path.resolve(__dirname, '..', 'dist'),
+        path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
         filename: 'bundle.js'
     },
@@ -17,21 +17,18 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.jsx?$/,
+                test: /\.js?$/,
                 use: [
                     {
                         loader: 'babel-loader',
                         options: {
                             cacheDirectory: true,
                             presets: [
-                                ['es2015', { modules: false }],
+                                'es2015',
                                 'react',
                                 'stage-0'
                             ],
                             plugins: [
-                                'react-hot-loader/babel',
-                                'transform-class-properties',
-                                'transform-decorators-legacy',
                                 ['module-resolver', {
                                     root: ['./src'],
                                     alias: {
@@ -40,15 +37,9 @@ module.exports = {
                                 }]
                             ]
                         }
-                    },
-                    {
-                        loader: 'eslint-loader'
-                    },
-                    {
-                        loader: 'stylelint-custom-processor-loader'
                     }
                 ],
-                include: path.resolve(__dirname, '..', 'src')
+                include: path.resolve(__dirname, 'src')
             },
             {
                 test: /\.(png|jpg|gif|svg)$/,
@@ -61,6 +52,10 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            {
+                test:/\.css$/,
+                use:['style-loader','css-loader']
             }
         ]
     },
@@ -69,20 +64,13 @@ module.exports = {
             'src',
             'node_modules'
         ],
-        extensions: ['.js', '.jsx']
+        extensions: ['.js', '.jsx', '.css', '.scss']
     },
     plugins: [
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('prod')
         }),
         new webpack.NoEmitOnErrorsPlugin(),
-        new HtmlWebpackPlugin({
-            template: 'src/index.html',
-            chunksSortMode: 'auto',
-            hash: true,
-            inject: 'body',
-            xhtml: true
-        }),
         new webpack.LoaderOptionsPlugin({
             options: {
                 eslint: {
@@ -94,12 +82,6 @@ module.exports = {
                 },
                 debug: false
             }
-        }),
-        new CopyWebpackPlugin([
-            {
-                from: path.resolve(__dirname, '..', 'src/favicon.ico'),
-                to: path.resolve(__dirname, '..', 'dist/favicon.ico')
-            }
-        ])
+        })
     ]
 };

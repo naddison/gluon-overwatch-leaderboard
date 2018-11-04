@@ -1,6 +1,35 @@
 import axios from 'axios'
 
-const battleTags = ['Tillio-1895', 'Dad76-1987', 'RobotKrieger-1651']
+const battleTags = ['Tillio-1895', 'RobotKrieger-1651', 'Sidewinder-1918', 'CutleryHero-1901']
+
+function getTop3(heroData) {
+    let mappedHeroes = [];
+
+    for (let key in heroData) {
+        try {
+            if (heroData.hasOwnProperty(key) && typeof heroData[key] !== 'function') {
+            let heroName = key == 'soldier76' ? 'soldier-76' : key;
+            heroName = heroName.toLowerCase();
+            mappedHeroes.push({
+                name: key,
+                timePlayed: heroData[key].timePlayedInSeconds,
+                winRate: heroData[key].winPercentage,
+                iconUrl: `https://d1u1mce87gyfbn.cloudfront.net/hero/${heroName}/icon-portrait.png`
+            });
+        }}
+        catch (err) {
+
+        }
+    }
+
+    mappedHeroes.sort((a, b) => {
+        return b.timePlayed - a.timePlayed; 
+    });
+
+    console.log(JSON.stringify(mappedHeroes));
+
+    return mappedHeroes.slice(0, 5);
+}
 
 class DataService {
 
@@ -12,21 +41,14 @@ class DataService {
                 .then(response => {
                     //map the response from the api to a structure we want
                     let temp = {
-                        battleTag: {
-                            tag: response.data.name,
-                            avatar: response.data.icon,
-                        },
-                        rank: {
-                            imgUrl: response.data.ratingIcon,
-                            value: response.data.rating,
-                        },
-                        top3Heros: [
-                            "https://d1u1mce87gyfbn.cloudfront.net/hero/zarya/icon-portrait.png",
-                            "https://d1u1mce87gyfbn.cloudfront.net/hero/bastion/icon-portrait.png",
-                            "https://d1u1mce87gyfbn.cloudfront.net/hero/ana/icon-portrait.png"
-                        ],
-                        timePlayed: 51
+                        name: response.data.name,
+                        avatar: response.data.icon,
+                        rank: response.data.rating,
+                        tier: response.data.ratingIcon,
+                        top3Heros: getTop3(response.data.competitiveStats.topHeroes),
+                        timePlayed: response.data.competitiveStats.careerStats.allHeroes.game.timePlayed
                     }
+                    console.log('-------BattleTAG'+ battleTag);
                     data.push(temp);
                 })
                 .catch(error => {
@@ -38,6 +60,8 @@ class DataService {
         return data;
     }
 }
+
+
 
 var dataService = new DataService();
 module.exports = dataService;
