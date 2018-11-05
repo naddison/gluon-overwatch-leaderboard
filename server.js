@@ -8,8 +8,8 @@ var proxy = require('proxy-middleware');
 var url = require('url');
 var path = require('path');
 var morgan = require('morgan');
-var API_URL = 'http://localhost:8000/'
-var CLIENT_PORT = 8080;
+var API_URL = process.env.API_URL || 'http://localhost:8000/'
+var CLIENT_PORT = process.env.CLIENT_PORT || 8080;
 
 if (process.env.NODE_ENV !== 'production') {
     var webpackDevMiddleware = require('webpack-dev-middleware');

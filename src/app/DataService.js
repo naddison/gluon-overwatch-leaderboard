@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const battleTags = ['Tillio-1895', 'RobotKrieger-1651', 'Sidewinder-1918', 'CutleryHero-1901'];
+const battleTags = process.env.BATTLE_TAGS.split(',') || ['Tillio-1895'];
 
 const getTop3 = function(heroData) {
     const mappedHeroes = [];

@@ -40,7 +40,7 @@ module.exports = {
                         }
                     },
                 ],
-                include: path.resolve(__dirname, 'src')
+                include: path.resolve(__dirname, '..','src')
             },
             {
                 test: /\.(png|jpg|gif|svg)$/,
@@ -68,7 +68,8 @@ module.exports = {
     },
     plugins: [
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('dev')
+            'process.env.NODE_ENV': JSON.stringify('dev'),
+            'process.env.BATTLE_TAGS': JSON.stringify(process.env.BATTLE_TAGS)
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
