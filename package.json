@@ -15,7 +15,7 @@
       }
     },
     "build:prod": {
-      "command": "rimraf dist && mkdir dist && webpack --optimize-minimize --progress --colors --config ./webpack.config.prod.js --bail",
+      "command": "rimraf dist && mkdir dist && eslint . && webpack --optimize-minimize --progress --colors --config ./webpack/webpack.config.prod.js --bail",
       "env": {
         "NODE_ENV": "production"
       }
@@ -78,6 +78,7 @@
     "webpack-hot-middleware": "~2.19.1"
   },
   "dependencies": {
+    "react-spinkit": "^3.0.0",
     "axios": "~0.16.2",
     "express": "~4.15.4",
     "history": "~4.7.2",
@@ -87,7 +88,7 @@
     "loader-utils": "~1.1.0",
     "lodash": "^4.17.11",
     "morgan": "~1.8.2",
-    "prop-types": "~15.5.10",
+    "prop-types": "^15.6.0",
     "proxy-middleware": "~0.15.0",
     "react": "~16.0.0",
     "react-dom": "~16.0.0",

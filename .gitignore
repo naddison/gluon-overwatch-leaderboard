@@ -27,5 +27,5 @@ node_modules/
 npm-debug.log
 .env
 /bower_components
-.package-lock.json
+package-lock.json
 dist/

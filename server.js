@@ -16,7 +16,7 @@ if (process.env.NODE_ENV !== 'production') {
     var webpackHotMiddleware = require('webpack-hot-middleware');
     var webpack = require('webpack');
 
-    var config = require('./webpack.config.dev');
+    var config = require('./webpack/webpack.config.dev');
     var compiler = webpack(config);
     var webpackDevMiddlewareInstance = webpackDevMiddleware(compiler, {
         noInfo: true,
@@ -49,7 +49,7 @@ if (process.env.NODE_ENV !== 'production') {
 
     // serve the app's index.html file when accessing any path
     server.get('*', function(req, res) {
-        res.sendFile(path.resolve(__dirname, 'src/index.html'));
+        res.sendFile(path.resolve(__dirname, 'src/index.dev.html'));
     });
 
 } else {

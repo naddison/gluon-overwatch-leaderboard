@@ -1,52 +1,53 @@
 import React from 'react';
+import LoadingScreen from './loadingScreen';
 import dataService from './DataService';
-import Roster from 'app/roster/RosterTable'
+import Roster from 'app/roster/RosterTable';
 import './main.css';
 
-var columns = [
+const columns = [
     'name',
     'avatar',
     'rank',
-    "tier",
+    'tier',
     'top3Heros',
     'timePlayed'
-]
+];
 
 class App extends React.Component {
-
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            rows : {}
-        }
+            rows: []
+        };
     }
 
     componentDidMount() {
         dataService.fetchPlayerData()
             .then(playerData => {
                 this.setState({
-                    rows : playerData
+                    rows: playerData
                 });
             });
     }
 
     render() {
+        if (this.state.rows.length === 0) {
+            return (
+                <LoadingScreen
+                    loading={true}
+                    bgColor="#f1f1f1"
+                    spinnerColor="#9ee5f8"
+                    textColor="#676767"
+                    bgImg='url("/static/loadingScreen.jpg")'
+                />
+            );
+        }
+
         return (
             <div>
-                <Header/>
-                <Statement/>
-                <Roster columns={columns} rows={this.state.rows}/>
-            </div>
-        )
-    }
-}
-
-class Spinner extends React.Component {
-    render() {
-        return (
-            <div claclassNamess="spinner" style="display: none;">
-                <div class="cube1"></div>
-                <div class="cube2"></div>
+                <Header />
+                <Statement />
+                <Roster columns={columns} rows={this.state.rows} />
             </div>
         );
     }
