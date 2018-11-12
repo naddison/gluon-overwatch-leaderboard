@@ -38,6 +38,8 @@ class DataService {
         for (const battleTag of battleTags) {
             await axios.get(`/api/stats/pc/us/${battleTag}`)
                 .then(response => {
+                    console.info('Response retrieved --> ' + JSON.stringify(response));
+
                     // map the response from the api to a structure we want
                     const temp = {
                         name: response.data.name,
