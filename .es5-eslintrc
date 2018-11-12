@@ -153,7 +153,7 @@
         "no-with": 2,
         "object-curly-spacing": [2, "always"], // Can prevent crowding, e.g., passing options object as a parameter.
         "one-var": 0, // Case-by-case
-        "operator-assignment": [2, "never"],
+        "operator-assignment": [0, "never"],
         "operator-linebreak": [2, "before"],
         "padded-blocks": [2, "never"],
         "quote-props": [2, "as-needed"],

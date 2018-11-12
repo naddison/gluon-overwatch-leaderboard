@@ -41,10 +41,10 @@ class RosterCell extends React.Component {
                                 <td><img className="heroImg" src={value[i].iconUrl} /></td>
                             </tr>
                             <tr>
-                                <td><p>{value[i].timePlayed / 60} min</p></td>
+                                <td><p>{value[i].timePlayed}</p></td>
                             </tr>
                             <tr>
-                                <td><p>WR {value[i].winRate}%</p></td>
+                                <td><p>{value[i].winRate}%</p></td>
                             </tr>
                         </tbody>
                     </table>
