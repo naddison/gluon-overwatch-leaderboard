@@ -12,7 +12,7 @@ class Table extends React.Component {
             avatar: 'avatar',
             rank: 'rating',
             tier: 'tier',
-            top3Heros: 'top heroes',
+            topHeros: 'top heroes',
             timePlayed: 'time played'
         };
 

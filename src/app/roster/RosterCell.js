@@ -1,5 +1,8 @@
 import React from 'react';
 
+/**
+ * Component that renders a cell specific for the datatype it is meant to display.
+ */
 class RosterCell extends React.Component {
     render() {
         const column = this.props.column;
@@ -30,12 +33,12 @@ class RosterCell extends React.Component {
                     <img className="playerAvatarTable rankImg" src={value} />
                 </td>
             );
-        case 'top3Heros':
+        case 'topHeros':
             const jsx = [];
 
             for (let i = 0; i < value.length; i++) {
                 jsx.push(
-                    <table key={value + i}>
+                    <table key={value[i].winRate + i}>
                         <tbody>
                             <tr>
                                 <td><img className="heroImg" src={value[i].iconUrl} /></td>

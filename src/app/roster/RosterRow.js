@@ -1,6 +1,9 @@
 import React from 'react';
 import RosterCell from './RosterCell';
 
+/**
+ * Class representing a row of the roster table.
+ */
 class RosterRow extends React.Component {
     rowJsx(columns, row) {
         let i = 0;

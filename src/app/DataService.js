@@ -1,8 +1,12 @@
 import axios from 'axios';
 
-const battleTags = process.env.BATTLE_TAGS.split(',') || ['Tillio-1895'];
-
-const getTop3 = function(heroData) {
+/**
+ * Return a sorted list of heros and their data. This function assumes that the heroData is an
+ * object in which each of its properties is the hero's name, and the value of that property
+ * the hero's data.
+ * @param {*} heroData
+ */
+const getTopHeros = function(heroData) {
     const mappedHeroes = [];
 
     for (const key in heroData) {
@@ -31,6 +35,9 @@ const getTop3 = function(heroData) {
 };
 
 /**
+ * Function to convert DD:HH:MM to seconds in an integer.
+ *
+ * Totally lifted this from StackOverflow, see the link:
  * https://stackoverflow.com/questions/9640266/convert-hhmmss-string-to-seconds-only-in-javascript/9640417
  */
 const hmsToSecondsOnly = (str) => {
@@ -46,13 +53,19 @@ const hmsToSecondsOnly = (str) => {
     return s;
 };
 
+/**
+ * Class that acts as the layer between the API and the rest of the FE. Calls
+ * to the API are wrapped in methods defined in this class.
+ *
+ * The express.js server serving the app will proxy each request to the API to avoid
+ * CORS issues.
+ *
+ * Note: Ideally I would have a clever use of redux as my data layer...maybe later.
+ */
 class DataService {
-    async fetchPlayerData() {
-        console.info(`Fetching roster data for battletags ${battleTags}`);
-        const data = [];
-
-        for (const battleTag of battleTags) {
-            await axios.get(`/api/stats/pc/us/${battleTag}`)
+    fetchPlayerData(battleTag) {
+        return new Promise((resolve, reject) => {
+            axios.get(`/api/stats/pc/us/${battleTag}`)
                 .then(response => {
                     // map the response from the api to a structure we want
                     const temp = {
@@ -60,19 +73,13 @@ class DataService {
                         avatar: response.data.icon,
                         rank: response.data.rating,
                         tier: response.data.ratingIcon,
-                        top3Heros: getTop3(response.data.competitiveStats.careerStats),
+                        topHeros: getTopHeros(response.data.competitiveStats.careerStats),
                         timePlayed: response.data.competitiveStats.careerStats.allHeroes.game.timePlayed
                     };
 
-                    data.push(temp);
-                })
-                .catch(error => {
-                    console.info('Error Will Robinson!');
-                    console.error(error);
+                    resolve(temp);
                 });
-        }
-
-        return data;
+        });
     }
 }
 

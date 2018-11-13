@@ -39,7 +39,7 @@
         "func-names": 0,
         "func-style": [2, "expression"],
         "global-strict": 0, // This is deprecated, but breaks unless we turn it off.
-        "guard-for-in": 2,
+        "guard-for-in": 0,
         "indent": [2, 4],
         "key-spacing": [2, {
             "beforeColon": false,

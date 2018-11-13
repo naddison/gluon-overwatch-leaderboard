@@ -7,7 +7,9 @@ import media from '../media.conf.js';
 const Title = styled.p`
   text-align: 'center';
   word-wrap: break-word;
-  color: ${props => props.color ? props.color : '#676767'}
+  color: #FCA311;
+  font-family: 'BlizzardBold';
+  text-shadow: 4px 1px 2px rgba(0, 0, 0, 1);
 
   ${media.largest`
     font-size: 30px;
@@ -32,11 +34,10 @@ const propTypes = {
 };
 
 const Text = function({
-    text,
-    textColor
+    text
 }) {
     return (
-        <Title color={textColor}>{text}</Title>
+        <Title>{text}</Title>
     );
 };
 
