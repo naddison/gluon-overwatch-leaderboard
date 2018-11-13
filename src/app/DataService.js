@@ -32,7 +32,6 @@ const getTop3 = function(heroData) {
 
 /**
  * https://stackoverflow.com/questions/9640266/convert-hhmmss-string-to-seconds-only-in-javascript/9640417
- * @param {*} str
  */
 const hmsToSecondsOnly = (str) => {
     const p = str.split(':');

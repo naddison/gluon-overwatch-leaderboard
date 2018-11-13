@@ -1,5 +1,5 @@
 import React from 'react';
-import LoadingScreen from './loadingScreen';
+import LoadingScreen from './loading-screen';
 import dataService from './DataService';
 import Roster from 'app/roster/RosterTable';
 import './main.css';

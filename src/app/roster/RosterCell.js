@@ -8,25 +8,25 @@ class RosterCell extends React.Component {
         switch (column) {
         case 'name':
             return (
-                <td>
+                <td key={value}>
                     <p className="playerAvatarTable name">{value}</p>
                 </td>
             );
         case 'avatar':
             return (
-                <td>
+                <td key={value}>
                     <img className="playerAvatarTable avatar" src={value} />
                 </td>
             );
         case 'rank':
             return (
-                <td className="rankTd">
+                <td key={value} className="rankTd">
                     <p className="rankValue">{value}</p>
                 </td>
             );
         case 'tier':
             return (
-                <td className="rankTd">
+                <td key={value} className="rankTd">
                     <img className="playerAvatarTable rankImg" src={value} />
                 </td>
             );
@@ -35,7 +35,7 @@ class RosterCell extends React.Component {
 
             for (let i = 0; i < value.length; i++) {
                 jsx.push(
-                    <table>
+                    <table key={value + i}>
                         <tbody>
                             <tr>
                                 <td><img className="heroImg" src={value[i].iconUrl} /></td>
@@ -51,19 +51,19 @@ class RosterCell extends React.Component {
                 );
             }
             return (
-                <td className="top3HeroCell">
+                <td key={value} className="top3HeroCell">
                     {jsx}
                 </td>
             );
         case 'timePlayed':
             return (
-                <td>
+                <td key={value}>
                     <p>{value}</p>
                 </td>
             );
         default:
             return (
-                <td>
+                <td key={value}>
                     <p>Unrecognized Data</p>
                 </td>
             );

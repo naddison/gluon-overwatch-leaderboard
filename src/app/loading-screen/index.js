@@ -31,7 +31,7 @@ const LoadableData = styled.div`
 `;
 
 const propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
     bgImg: PropTypes.string,
     bgColor: PropTypes.string,
     spinnerColor: PropTypes.string,

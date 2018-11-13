@@ -13,7 +13,7 @@ module.exports = {
         publicPath: '/',
         filename: 'bundle.js'
     },
-    devtool: 'cheap-module-source-map',
+    devtool: 'eval-source-map',
     module: {
         rules: [
             {
@@ -68,7 +68,8 @@ module.exports = {
     },
     plugins: [
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('prod')
+            'process.env.NODE_ENV': JSON.stringify('prod'),
+            'process.env.BATTLE_TAGS': JSON.stringify(process.env.BATTLE_TAGS)
         }),
         new webpack.NoEmitOnErrorsPlugin(),
         new webpack.LoaderOptionsPlugin({

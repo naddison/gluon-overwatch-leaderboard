@@ -178,7 +178,7 @@
         }],
         "strict": [2, "global"],
         "use-isnan": 2,
-        "valid-jsdoc": [2, {
+        "valid-jsdoc": [0, {
             "prefer": {
                 "returns": "return",
                 "class": "constructor",

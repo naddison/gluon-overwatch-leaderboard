@@ -1,26 +1,5 @@
 import React from 'react';
-import RosterCell from './RosterCell';
-
-class TableRow extends React.Component {
-    rowJsx(columns, row) {
-        return columns.map(function(column) {
-            return (
-                <RosterCell key={row[column]} column={column} value={row[column]} />
-            );
-        });
-    }
-
-    render() {
-        const columns = this.props.columns;
-        const row = this.props.row;
-
-        return (
-            <tr>
-                {this.rowJsx(columns, row)}
-            </tr>
-        );
-    }
-}
+import RosterRow from './RosterRow';
 
 class Table extends React.Component {
     constructor(props) {
@@ -37,19 +16,25 @@ class Table extends React.Component {
             timePlayed: 'time played'
         };
 
+        let i = 0;
+
         return (
             <tr>
                 {columns.map(function(column) {
-                    return <th key={column}>{columnToHeaderMapping[column]}</th>;
+                    i++;
+                    return <th key={column + i}>{columnToHeaderMapping[column]}</th>;
                 })}
             </tr>
         );
     }
 
     tableBody(columns, rows) {
+        let i = 0;
+
         if (rows && rows.length > 0) {
             return rows.map(function(row) {
-                return (<TableRow key={row.battleTag} columns={columns} row={row} />);
+                i++;
+                return (<RosterRow key={row.name + i} columns={columns} row={row} />);
             });
         }
 
