@@ -41,7 +41,7 @@ class App extends React.Component {
                         rows: [...this.state.rows, result]
                     });
                 }).catch(err =>{
-                    console.info('Danger will robinson! .. ' + JSON.stringify(err));
+                    console.info('Danger will robinson! .. ' + JSON.stringify(err.response.statusText));
                     this.setState({
                         err
                     });

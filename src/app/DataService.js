@@ -78,6 +78,8 @@ class DataService {
                     };
 
                     resolve(temp);
+                }).catch(err => {
+                    reject(err);
                 });
         });
     }
