@@ -1,0 +1,19 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: "node:8.11"
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Build and push Docker image
+          command: |
+            docker build -t naddison/gluon_overwatch:latest .
+            echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
+            docker push ariv3ra/$IMAGE_NAME:$TAG
+      - run:
+          name: Deploy app to Digital Ocean Server via Docker
+          command: |
+            ssh -o StrictHostKeyChecking=no nikolas@$DEPLOY_HOST "/bin/bash ~/deploy.sh naddison/gluon_overwatch:latest"

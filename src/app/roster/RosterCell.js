@@ -7,29 +7,30 @@ class RosterCell extends React.Component {
     render() {
         const column = this.props.column;
         const value = this.props.value;
+        const key = (value || Math.random()) + '_' + column;
 
         switch (column) {
         case 'name':
             return (
-                <td key={value}>
+                <td key={key}>
                     <p className="playerAvatarTable name">{value}</p>
                 </td>
             );
         case 'avatar':
             return (
-                <td key={value}>
+                <td key={key}>
                     <img className="playerAvatarTable avatar" src={value} />
                 </td>
             );
         case 'rank':
             return (
-                <td key={value} className="rankTd">
+                <td key={key} className="rankTd">
                     <p className="rankValue">{value}</p>
                 </td>
             );
         case 'tier':
             return (
-                <td key={value} className="rankTd">
+                <td key={key} className="rankTd">
                     <img className="playerAvatarTable rankImg" src={value} />
                 </td>
             );
@@ -37,8 +38,10 @@ class RosterCell extends React.Component {
             const jsx = [];
 
             for (let i = 0; i < value.length; i++) {
+                const key2 = (value[i].winRate + i || Math.random()) + '_' + column;
+
                 jsx.push(
-                    <table key={value[i].winRate + i}>
+                    <table key={key2}>
                         <tbody>
                             <tr>
                                 <td><img className="heroImg" src={value[i].iconUrl} /></td>
@@ -54,19 +57,19 @@ class RosterCell extends React.Component {
                 );
             }
             return (
-                <td key={value} className="top3HeroCell">
+                <td key={key} className="top3HeroCell">
                     {jsx}
                 </td>
             );
         case 'timePlayed':
             return (
-                <td key={value}>
+                <td key={key}>
                     <p>{value}</p>
                 </td>
             );
         default:
             return (
-                <td key={value}>
+                <td key={key}>
                     <p>Unrecognized Data</p>
                 </td>
             );
