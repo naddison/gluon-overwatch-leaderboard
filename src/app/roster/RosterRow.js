@@ -10,9 +10,13 @@ class RosterRow extends React.Component {
 
         return columns.map(function(column) {
             i++;
+            // return (
+            //     <RosterCell key={row[column] + i} column={column} value={row[column]} />
+            // );
+
             return (
-                <RosterCell key={row[column] + i} column={column} value={row[column]} />
-            );
+                <tr></tr>
+            )
         });
     }
 

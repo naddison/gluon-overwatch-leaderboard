@@ -1,7 +1,8 @@
 import React from 'react';
 import LoadingScreen from './loading-screen';
-import dataService from './DataService';
+import { dataService } from './DataService';
 import Roster from 'app/roster/RosterTable';
+import Leaderboard from 'app/leaderboard/Leaderboard';
 import './main.css';
 
 /**
@@ -10,25 +11,13 @@ import './main.css';
 const battleTags = process.env.BATTLE_TAGS.split(',') || ['Tillio-1895', 'RobotKrieger-1651'];
 
 /**
- * Expected properties of the player object coming out of DataService.
- */
-const columns = [
-    'name',
-    'avatar',
-    'rank',
-    'tier',
-    'topHeros',
-    'timePlayed'
-];
-
-/**
  * Parent component of the entire app added to the root element of index.html.
  */
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            rows: []
+            players: []
         };
     }
 
@@ -38,10 +27,10 @@ class App extends React.Component {
             dataService.fetchPlayerData(battleTags[i])
                 .then(result => {
                     this.setState({
-                        rows: [...this.state.rows, result]
+                        players: [...this.state.players, result]
                     });
                 }).catch(err =>{
-                    console.info('Danger will robinson! .. ' + JSON.stringify(err.response.statusText));
+                    console.info('Danger will robinson! .. ' + err);
                     this.setState({
                         err
                     });
@@ -50,7 +39,7 @@ class App extends React.Component {
     }
 
     render() {
-        if (this.state.rows.length < 2 || this.state.err) {
+        if (this.state.players.length < 2 || this.state.err) {
             let message = '';
 
             if (this.state.err) {
@@ -65,7 +54,6 @@ class App extends React.Component {
                     loading={true}
                     spinnerColor="#9ee5f8"
                     text={message}
-                    bgImg='url("/static/loadingScreen.jpg")'
                 />
             );
         }
@@ -74,7 +62,7 @@ class App extends React.Component {
             <div>
                 <Header />
                 <Statement />
-                <Roster columns={columns} rows={this.state.rows} />
+                <Leaderboard players={this.state.players} />
             </div>
         );
     }

@@ -9,7 +9,7 @@ const Title = styled.p`
   word-wrap: break-word;
   color: #FCA311;
   font-family: 'BlizzardBold';
-  text-shadow: 4px 1px 2px rgba(0, 0, 0, 1);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 1);
 
   ${media.largest`
     font-size: 30px;

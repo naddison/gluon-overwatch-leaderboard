@@ -1,28 +1,28 @@
 /**
 Entire page Styles
 **/
-@font-face { font-family: "BigNoodle"; src: url("http://us.battle.net/forums/static/fonts/bignoodletoo/bignoodletoo.woff") format('woff'); }	
+@font-face { font-family: "BigNoodle"; src: url("http://us.battle.net/forums/static/fonts/bignoodletoo/bignoodletoo.woff") format('woff'); }
 @font-face { font-family: "BlizzardBold"; src: url("https://us.battle.net/forums/static/fonts/blizzard/blizzard-bold.woff") format('woff'); }
 @font-face { font-family: "BlizzardItalic"; src: url("https://us.battle.net/forums/static/fonts/blizzard/blizzard-italic.woff") format('woff'); }
 @font-face { font-family: "Blizzard"; src: url("https://us.battle.net/forums/static/fonts/blizzard/blizzard.woff") format('woff'); }
 
 body {
-    background-image: url(/static/128-168.jpg);
+    background-color: #FFF;
 }
 
 th {
     font-size: 1.5em;
     font-family: "BigNoodle";
-    background-color: #14213D;
     color: #FFFFFF;
     letter-spacing: 1px;
-    text-shadow: 4px 4px 0px #000000;
+    text-shadow: 1px 1px 6px #000000;
 }
 
-td p {
-    font-family: 'Blizzard';
-    font-size: 1em;
-    text-align: center;
+thead tr {
+    background: rgb(1,118,163);
+    background: radial-gradient(circle, rgba(1,118,163,1) 36%, rgba(255,255,255,1) 96%);
+    border-bottom: 1px outset #006992;
+    border-top: 1px outset #006992;
 }
 
 .notes h1 {
@@ -32,77 +32,62 @@ td p {
 
 #header {
     width: 100%;
-    background-color: #14213D;
-    outline: 6px double #14213D;
+    height: 1m;
+    background: rgb(1,152,210);
+    background: radial-gradient(circle, rgba(1,152,210,1) 36%, rgba(255,255,255,1) 96%);
+    border-bottom: 1px outset #006992;
+    border-top: 1px outset #006992;
 }
 
 #header > h1 {
+    letter-spacing: 1.5px;
     font-size: 3.0em;
     color: #FCA311;
     font-family: "BigNoodle";
     text-shadow: 2px 3px 4px #000000;
+    margin-top: 12px;
+    margin-bottom: 12px;
 }
-    
+
 /**
 Component Specfic Styles
 **/
-.rankImg {
-    display: block;
-    margin: 0 auto;
-    height: auto;
-    width: 50px;
-} 
-
 table {
     margin: auto;
     width:80%;
+    border-collapse: collapse;
+}
+
+tr td {
+    border-bottom: 1px outset #006992;
+}
+
+tr:first-child td:first-child {
+    border-top-left-radius: 10px;
+}
+
+tr:first-child td:last-child {
+    border-top-right-radius: 10px;
+}
+
+tr:last-child td {
+    border-bottom: 0px;
+}
+
+tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
 }
 
 #header, .notes {
     text-align: center;
     margin: auto;
-    width: 70%;
 }
 
-.avatar{
-    display: block;
-    margin: 0 auto;
-    height: auto;
-    width: 50px;
-}
-
-.heroImg {
-    height: auto;
-    width: 50px;
-    float: left;
-}
-
-.top3HeroCell table p {
-    font-size: 0.7em;
-}
-
-td {
-    background-color: #E5E5E5;
-}
-
-.top3HeroCell {
-    display: flex;                  /* establish flex container */
-    flex-direction: row;            /* default value; can be omitted */
-    flex-wrap: nowrap;              /* default value; can be omitted */
-    justify-content: space-between; /* switched from default (flex-start, see below) */
-}
-
-.top3HeroCell table {
-    width: 50px;
-    margin: 0;
-}
-
-.top3HeroCell table p {
-    padding: 0;
-    margin: 0;
-}
-
-/** 
+/**
 Spinner CSS Styles
 **/
 .spinner {
@@ -136,19 +121,19 @@ Spinner CSS Styles
 }
 
 @keyframes sk-cubemove {
-    25% { 
+    25% {
         transform: translateX(42px) rotate(-90deg) scale(0.5);
         -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5);
-    } 50% { 
+    } 50% {
         transform: translateX(42px) translateY(42px) rotate(-179deg);
         -webkit-transform: translateX(42px) translateY(42px) rotate(-179deg);
-    } 50.1% { 
+    } 50.1% {
         transform: translateX(42px) translateY(42px) rotate(-180deg);
         -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg);
-    } 75% { 
+    } 75% {
         transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
         -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
-    } 100% { 
+    } 100% {
         transform: rotate(-360deg);
         -webkit-transform: rotate(-360deg);
     }
